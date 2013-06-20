@@ -1,29 +1,3 @@
-// function insertParam(key, value)
-// {
-//     key = escape(key); value = escape(value);
-
-//     var kvp = document.location.search.substr(1).split('&');
-
-//     var i=kvp.length; var x; while(i--) 
-//     {
-//     	x = kvp[i].split('=');
-
-//     	if (x[0]==key)
-//     	{
-//     		x[1] = value;
-//     		kvp[i] = x.join('=');
-//     		break;
-//     	}
-//     }
-
-//     if(i<0) {kvp[kvp.length] = [key,value].join('=');}
-
-//     //this will reload the page, it's likely better to store this until finished
-//     document.location.search = kvp.join('&'); 
-// }
-
-
-
 function setParams(params) {
     document.location.search = $.param(params);
 }
@@ -34,7 +8,27 @@ function getParams() {
 
     for(var i = 0; i < curParams.length; i++) {
         x = curParams[i].split('=');
-        hash[x[0]] = x[1];
+
+        //check if key is an array
+        var arrayRegex = /%5B\d%5D/;
+        if(x[0].match(arrayRegex)) {
+
+            //remove the bracket encoding from the key
+            x[0] = x[0].replace(arrayRegex, '');
+
+            //put the value into an array if it is the first object for the array
+            if(!hash[x[0]]) {
+                x[1] = [x[1]];
+            }
+        }
+
+        //if key already exists in hash add value into array
+        if(hash[x[0]]) {
+            hash[x[0]].push(x[1]);
+        }
+        else {
+            hash[x[0]] = x[1];
+        }
     }
 
     return hash;
