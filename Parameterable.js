@@ -40,7 +40,7 @@ function setParams(params) {
 }
 
 function getParams() {
-    curParams = document.location.search.substr(1).split('&');
+    var curParams = document.location.search.substr(1).split('&');
     var hash = {};
 
     for(var i = 0; i < curParams.length; i++) {
@@ -52,8 +52,21 @@ function getParams() {
 }
 
 function updateParams(params) {
-    curParams = getParams();
+    var curParams = getParams();
 
     hash = $.extend(curParams,params);
     setParams(hash);
+}
+
+function removeParams(keys) {
+    var curParams = getParams();
+
+    for(var i = 0;i < keys.length; i++) {
+        delete curParams[keys[i]];
+    }
+    setParams(curParams);
+}
+
+function removeParam(key) {
+    setParams(delete getParams()[key]);
 }
