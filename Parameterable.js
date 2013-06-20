@@ -25,18 +25,7 @@
 
 
 function setParams(params) {
-    var path = document.location.origin + document.location.pathname + '?';
-    var first = true;
-
-    for(var key in params) {
-        if(!first) {
-            path = path + '&';
-        }
-        path = path + key + '=' + params[key];
-        first = false;
-    }
-
-    document.location = path;
+    document.location.search = $.param(params);
 }
 
 function getParams() {
