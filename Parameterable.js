@@ -1,3 +1,7 @@
+// Parameterable
+// Aidan Wolter
+// Kalkomey Enterprises, Inc.
+
 function setParams(params) {
     document.location.search = $.param(params);
 }
