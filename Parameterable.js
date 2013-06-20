@@ -22,19 +22,12 @@
 //     document.location.search = kvp.join('&'); 
 // }
 
+
+
 function setParams(params) {
-
-    //get all the current parameter objects and store in array
-	// curParams = document.location.search.substr(1).split('&');
- //    hash = {};
-	
- //    for(int i = 0; i < curParams.length; i++) {
- //        x = curParams[i].split('=');
- //        hash[x[0]] = x[1];
- //    }
-
-    path = document.location.origin + document.location.pathname + '?';
+    var path = document.location.origin + document.location.pathname + '?';
     var first = true;
+
     for(var key in params) {
         if(!first) {
             path = path + '&';
@@ -42,4 +35,25 @@ function setParams(params) {
         path = path + key + '=' + params[key];
         first = false;
     }
+
+    document.location = path;
+}
+
+function getParams() {
+    curParams = document.location.search.substr(1).split('&');
+    var hash = {};
+
+    for(var i = 0; i < curParams.length; i++) {
+        x = curParams[i].split('=');
+        hash[x[0]] = x[1];
+    }
+
+    return hash;
+}
+
+function updateParams(params) {
+    curParams = getParams();
+
+    hash = $.extend(curParams,params);
+    setParams(hash);
 }
