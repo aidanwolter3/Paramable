@@ -23,6 +23,23 @@
 // }
 
 function setParams(params) {
-	curParams = document.location.search.substr(1).split('&');
+
+    //get all the current parameter objects and store in array
+	// curParams = document.location.search.substr(1).split('&');
+ //    hash = {};
 	
+ //    for(int i = 0; i < curParams.length; i++) {
+ //        x = curParams[i].split('=');
+ //        hash[x[0]] = x[1];
+ //    }
+
+    path = document.location.origin + document.location.pathname + '?';
+    var first = true;
+    for(var key in params) {
+        if(!first) {
+            path = path + '&';
+        }
+        path = path + key + '=' + params[key];
+        first = false;
+    }
 }
