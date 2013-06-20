@@ -66,7 +66,9 @@
                 this.set(curParams);
             }
             else {
-                this.set(delete this.list()[keys]);
+                var hash = this.list();
+                delete hash[keys];
+                this.set(hash);
             }
         }
     };
