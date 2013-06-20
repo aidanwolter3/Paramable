@@ -16,7 +16,7 @@
                 x = curParams[i].split('=');
 
                 //check if key is an array
-                var arrayRegex = /%5B\d%5D/;
+                var arrayRegex = /%5B\d?%5D/;
                 if(x[0].match(arrayRegex)) {
 
                     //remove the bracket encoding from the key
@@ -57,7 +57,7 @@
                 this.set(curParams);
             }
             else {
-                this.set(delete this.list()[key]);
+                this.set(delete this.list()[keys]);
             }
         }
     };
