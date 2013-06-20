@@ -5,7 +5,12 @@
 (function() {
     var urlParams = {
         set: function(params) {
-            document.location.search = $.param(params);
+            if($.isEmptyObject(params)) {
+                document.location.href = window.location.href.split('?')[0];
+            }
+            else {
+                document.location.search = $.param(params);
+            }
         },
 
         list: function() {
@@ -42,9 +47,13 @@
 
         update: function(params) {
             var curParams = this.list();
-
-            hash = $.extend(curParams,params);
-            this.set(hash);
+            if(document.location.search.length <= 0) {
+                this.set(params);
+            }
+            else {
+                var hash = $.extend(curParams,params);
+                this.set(hash);
+            }
         },
 
         remove: function(keys) {
