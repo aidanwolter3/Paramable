@@ -3,7 +3,12 @@
 // Kalkomey Enterprises, Inc.
 
 (function() {
+    var ARRAYREGEX = /%5B\d?%5D/;
+    function isKeyArray(key) {
+        return key.match(ARRAYREGEX);
+    }
     var urlParams = {
+
         set: function(params) {
             if($.isEmptyObject(params)) {
                 document.location.href = window.location.href.split('?')[0];
@@ -17,15 +22,14 @@
             var curParams = document.location.search.substr(1).split('&');
             var hash = {};
 
-            for(var i = 0; i < curParams.length; i++) {
+            for(var i = 0, j = curParams.length; i < j; i++) {
                 x = curParams[i].split('=');
 
                 //check if key is an array
-                var arrayRegex = /%5B\d?%5D/;
-                if(x[0].match(arrayRegex)) {
+                if(isKeyArray(x[0])) {
 
                     //remove the bracket encoding from the key
-                    x[0] = x[0].replace(arrayRegex, '');
+                    x[0] = x[0].replace(ARRAYREGEX, '');
 
                     //put the value into an array if it is the first object for the array
                     if(!hash[x[0]]) {
