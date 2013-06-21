@@ -25,6 +25,9 @@
             for(var i = 0, j = curParams.length; i < j; i++) {
                 x = curParams[i].split('=');
 
+                //decode value
+                x[1] = decodeURIComponent(x[1]);
+
                 //check if key is an array
                 if(isKeyArray(x[0])) {
 
