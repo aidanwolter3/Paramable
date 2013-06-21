@@ -1,7 +1,7 @@
-Parameterable
+Paramable
 =============
 
-This file implements a urlParams object which easily edits the parameters in the current URL. After the URL is modified
+This implements a urlParams javascript object which easily edits the parameters in the current URL. After the URL is modified
 the page will reload.
 
 

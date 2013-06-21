@@ -1,4 +1,4 @@
-// Parameterable
+// Paramable
 // Aidan Wolter
 // Kalkomey Enterprises, Inc.
 
