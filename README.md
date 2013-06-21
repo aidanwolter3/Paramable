@@ -37,7 +37,7 @@ var hash = urlParams.list(); // hash = {first: "value2", second: Array[3], third
 Removing parameters
 -------------------
 
-Remove multiple parameters using the removeParams(keys) function.
+Remove multiple parameters by passing in an array of keys.
 
 ``` javascript
 var hash = urlParams.list(); // hash = {first: "value1", second: Array[3], third: "3"}
@@ -45,7 +45,7 @@ urlParams.remove(["first","second"]);
 var hash = urlParams.list(); // hash = {third: "3"}
 ```
 
-You can also choose to remove only a single parameter.
+Or remove only a single parameter by passing in only a single key.
 
 ``` javascript
 var hash = urlParams.list(); // hash = {first: "value1", second: Array[3], third: "3"}
