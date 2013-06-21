@@ -52,3 +52,8 @@ var hash = urlParams.list(); // hash = {first: "value1", second: Array[3], third
 urlParams.remove("first");
 var hash = urlParams.list(); // hash = {second: Array[3], third: "3"}
 ```
+
+Dependencies
+------------
+
+The only dependency is JQuery.
